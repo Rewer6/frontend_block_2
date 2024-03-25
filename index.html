@@ -51,6 +51,21 @@
   header {
     height:205px;
   }
+  form#survey-form {
+    color:goldenrod;
+    font-size: 20px;
+    text-align: center;
+  }
+  h2#h-survey-form{
+    text-align: center;
+    font-size:35px;
+    /* color:#fff; */
+    color:goldenrod;
+    line-height:1.2em;
+    letter-spacing:-3px;
+    font-weight:400;
+    margin-left:-2px;
+  }
 </style>
 </head>
 <body id="page1">
@@ -104,7 +119,8 @@
             <p>Сюжет фільму зосереджується на міфічній подорожі Пола Атрейдеса, коли він об’єднується з Чані та племенем фременів, щоб помститися вбивцям своєї родини. Прем’єра фільму запланована на 29 лютого 2024 року.</p>
           </div>
         </div>
-        <table border="1" cellpadding="0" cellspacing="0" width="60%">
+
+        <!-- <table border="1" cellpadding="0" cellspacing="0" width="60%">
           <tr>
               <th>Назва фільму</th>
               <th>Режисер</th>
@@ -164,7 +180,7 @@
                 </li>
             </ul>
       <hr>            
-      <!-- <form>
+      <form>
         <label for="username">Ім'я користувача:</label><br>
         <input type="text" id="username" name="username"><br>
 
@@ -198,7 +214,9 @@
       <hr> ФОРМА ІЗ ПОПЕРЕДНЬОГО БЛОКУ ЗАВДАНЬ-->
 
       <!-- Початок блоку завдань 2 -->
-      <form id="survey-form">
+      <h2 id="h-survey-form">Важливе опитування</h2>
+      <hr>
+      <form id="survey-form" >
         <label for="name">1.Ваше ім'я:</label>
         <input type="text" id="name" name="name" required><br>
 
@@ -208,7 +226,7 @@
         <label for="age">3.Ваш вік:</label>
         <input type="number" id="age" name="age" min="1" max="120"><br>
 
-        <label for="favorite-movie">4.Завантажте обкладинку вашого улюбленого фільму:</label>
+        <label for="favorite-movie">4.Завантажте обкладинку вашого фільму:</label>
         <input type="file" id="favorite-movie" name="favorite-movie"><br>
 
         <label for="rating">5.Оцінка улюбленого фільму:</label>
@@ -217,9 +235,9 @@
 
         <label for="genre">6.Улюблений жанр:</label>
         <select id="genre" name="genre">
-            <option value="action">Action</option>
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
+            <option value="action">Бойовик</option>
+            <option value="comedy">Комедія</option>
+            <option value="drama">Мелодрама</option>
         </select><br>
 
         <label for="comments">7.Коментарі:</label>
