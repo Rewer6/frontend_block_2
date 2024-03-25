@@ -123,80 +123,120 @@
               <td>12 січня 2024</td>
               <td>США, Велика Британія</td>
           </tr>
-  </table>
-          <hr>
-          Фільм
-          <ol>
-              <li>Бджоляр</li>
-              <li>Титанік</li>
-              <li>Аватар</li>
-          </ol>
-          Жанр
-          <ul>
-              <li>Драма</li>
-              <li>Комедія</li>
-              <li>Фантастика</li>
-          </ul>
-          Інформація
-          <dl>
-              <dt>Бджоляр</dt>
-              <dd>Фільм про бджоляра, який веде боротьбу за збереження бджіл.</dd>
-              <dt>Титанік</dt>
-              <dd>Фільм про трагедію лайнера "Титанік".</dd>
-              <dt>Аватар</dt>
-              <dd>Фантастичний фільм про віддалену планету Пандору.</dd>
-          </dl>
-          Довідник
-          <ul>
-              <li>Жанри
-                  <ul>
-                      <li>Драма</li>
-                      <li>Комедія</li>
-                      <li>Фантастика</li>
-                  </ul>
-              </li>
-              <li>Популярні фільми
-                  <ol>
-                      <li>Бджоляр</li>
-                      <li>Титанік</li>
-                      <li>Аватар</li>
-                  </ol>
-              </li>
-          </ul>
-<hr>            
-<form>
-  <label for="username">Ім'я користувача:</label><br>
-  <input type="text" id="username" name="username"><br>
+         </table>
+            <hr>
+            Фільм
+            <ol>
+                <li>Бджоляр</li>
+                <li>Титанік</li>
+                <li>Аватар</li>
+            </ol>
+            Жанр
+            <ul>
+                <li>Драма</li>
+                <li>Комедія</li>
+                <li>Фантастика</li>
+            </ul>
+            Інформація
+            <dl>
+                <dt>Бджоляр</dt>
+                <dd>Фільм про бджоляра, який веде боротьбу за збереження бджіл.</dd>
+                <dt>Титанік</dt>
+                <dd>Фільм про трагедію лайнера "Титанік".</dd>
+                <dt>Аватар</dt>
+                <dd>Фантастичний фільм про віддалену планету Пандору.</dd>
+            </dl>
+            Довідник
+            <ul>
+                <li>Жанри
+                    <ul>
+                        <li>Драма</li>
+                        <li>Комедія</li>
+                        <li>Фантастика</li>
+                    </ul>
+                </li>
+                <li>Популярні фільми
+                    <ol>
+                        <li>Бджоляр</li>
+                        <li>Титанік</li>
+                        <li>Аватар</li>
+                    </ol>
+                </li>
+            </ul>
+      <hr>            
+      <!-- <form>
+        <label for="username">Ім'я користувача:</label><br>
+        <input type="text" id="username" name="username"><br>
 
-  <label for="pwd">Пароль:</label><br>
-  <input type="password" id="pwd" name="pwd"><br>
+        <label for="pwd">Пароль:</label><br>
+        <input type="password" id="pwd" name="pwd"><br>
 
-  <label for="remember">Запам'ятати мене:</label>
-  <input type="checkbox" id="remember" name="remember"><br>
+        <label for="remember">Запам'ятати мене:</label>
+        <input type="checkbox" id="remember" name="remember"><br>
 
-  <label for="male">Чоловічий</label>
-  <input type="radio" id="male" name="gender" value="male">
-  <label for="female">Жіночий</label>
-  <input type="radio" id="female" name="gender" value="female"><br>
+        <label for="male">Чоловічий</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="female">Жіночий</label>
+        <input type="radio" id="female" name="gender" value="female"><br>
 
-  <input type="submit" value="Надіслати">
-  <input type="reset" value="Скинути"><br>
+        <input type="submit" value="Надіслати">
+        <input type="reset" value="Скинути"><br>
 
-  <label for="avatar">Аватар:</label>
-  <input type="file" id="avatar" name="avatar"><br>
+        <label for="avatar">Аватар:</label>
+        <input type="file" id="avatar" name="avatar"><br>
 
-  <label for="comment">Коментар:</label><br>
-  <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+        <label for="comment">Коментар:</label><br>
+        <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
 
-  <label for="movie">Фільм:</label>
-  <select id="movie" name="movie">
-      <option value="Бджоляр">Бджоляр</option>
-      <option value="Титанік">Титанік</option>
-      <option value="Аватар">Аватар</option>
-  </select>
-<hr>
-</form>
-      </article>
+        <label for="movie">Фільм:</label>
+        <select id="movie" name="movie">
+            <option value="Бджоляр">Бджоляр</option>
+            <option value="Титанік">Титанік</option>
+            <option value="Аватар">Аватар</option>
+        </select>
+      </form>
+      <hr> ФОРМА ІЗ ПОПЕРЕДНЬОГО БЛОКУ ЗАВДАНЬ-->
+
+      <!-- Початок блоку завдань 2 -->
+      <form id="survey-form">
+        <label for="name">1.Ваше ім'я:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">2.Ваш email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="age">3.Ваш вік:</label>
+        <input type="number" id="age" name="age" min="1" max="120"><br>
+
+        <label for="favorite-movie">4.Завантажте обкладинку вашого улюбленого фільму:</label>
+        <input type="file" id="favorite-movie" name="favorite-movie"><br>
+
+        <label for="rating">5.Оцінка улюбленого фільму:</label>
+        <input type="range" id="rating" name="rating" min="1" max="10"><br>
+
+
+        <label for="genre">6.Улюблений жанр:</label>
+        <select id="genre" name="genre">
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+        </select><br>
+
+        <label for="comments">7.Коментарі:</label>
+        <textarea id="comments" name="comments"></textarea><br>
+
+        <label for="seen-movie">8.Чи бачили ви цей фільм?</label>
+        <input type="checkbox" id="seen-movie" name="seen-movie"><br>
+
+        <label for="movie-year">9.Рік виходу фільму:</label>
+        <input type="date" id="movie-year" name="movie-year"><br>
+
+        <label for="movie-time">10.Тривалість фільму:</label>
+        <input type="time" id="movie-time" name="movie-time"><br>
+        <input type="submit" value="Submit">
+      </form>
+
+     </article>
     
       <footer>
         <div class="line1">
