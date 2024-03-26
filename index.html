@@ -253,38 +253,54 @@
         <input type="time" id="movie-time" name="movie-time"><br>
         <input type="submit" value="Submit">
       </form>
-      <div id="resultFilter"></div>
+
       <hr>
       <button id="filter-by-age">Фільтрувати за віком</button>
       <button id="filter-by-genre">Фільтрувати за жанром бойовик</button>
       <button id="filter-by-rating">Фільтрувати за рейтингом 7+</button>
 
+      <div id="results"></div>
+
       <script>
-        // Функція для фільтрування даних
-        function filterData(filterFunction) {
-          var allForms = JSON.parse(localStorage.getItem('FormData')) || [];
-          var filteredForms = allForms.filter(filterFunction);
-          console.log(filteredForms); // Виводимо відфільтровані дані в консоль
+        // Функція для виводу результатів на веб-сторінку
+        function displayResults(results) {
+          var resultsDiv = document.getElementById('results');
+          resultsDiv.innerHTML = ''; // Очищаємо попередні результати
+          results.forEach(function(result, index) {
+            var resultDiv = document.createElement('div');
+            resultDiv.textContent = 'Результат ' + (index + 1) + ': ' + JSON.stringify(result);
+            resultsDiv.appendChild(resultDiv);
+          });
         }
+
         // Фільтруємо дані за віком 18+
         document.getElementById('filter-by-age').addEventListener('click', function() {
-          filterData(function(formData) {
-            return formData.age >= 18;
+          var allForms = JSON.parse(localStorage.getItem('FormData')) || [];
+          var filteredForms = allForms.filter(function(form) {
+            return form.age >= 18;
           });
+          displayResults(filteredForms); 
+          console.log(filteredForms);
         });
 
-        // Фільтруємо дані за жанром
+        // Фільтруємо дані за жанром бойовик
         document.getElementById('filter-by-genre').addEventListener('click', function() {
-          filterData(function(formData) {
-            return formData.genre === 'action';
+          var allForms = JSON.parse(localStorage.getItem('FormData')) || [];
+          var filteredForms = allForms.filter(function(form) {
+            return form.genre === 'action';
           });
+          displayResults(filteredForms); 
+          console.log(filteredForms);
         });
 
         // Фільтруємо дані за рейтингом 7+
         document.getElementById('filter-by-rating').addEventListener('click', function() {
-          filterData(function(formData) {
-            return formData.rating >= 7; 
+          var allForms = JSON.parse(localStorage.getItem('FormData')) || [];
+          var filteredForms = allForms.filter(function(form) {
+            return form.rating >= 7;
           });
+          displayResults(filteredForms); 
+          console.log(filteredForms);
         });
 
         document.getElementById('survey-form').addEventListener('submit', function(event) {
