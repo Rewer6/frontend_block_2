@@ -271,7 +271,9 @@
               movieTime: document.getElementById('movie-time').value
           };
 
-          localStorage.setItem('FormData', JSON.stringify(FormData));
+          var allForms = JSON.parse(localStorage.getItem('FormData')) || [];
+          allForms.push(FormData);
+          localStorage.setItem('FormData', JSON.stringify(allForms));
       });
       </script>
 
