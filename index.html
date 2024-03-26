@@ -302,11 +302,12 @@
             y: Math.floor(Math.random()*17+1) * box
         }
 
+        let Score = 0;
         let Game;
         let d;
 
         startButton.addEventListener("click", function() {
-        Game = setInterval(draw, 100);
+        Game = setInterval(draw, 150);
         });
 
         document.addEventListener("keydown", direction);
@@ -342,6 +343,7 @@
             if(d == "DOWN") snakeY += box;
             
             if(snakeX == food.x && snakeY == food.y){
+                Score++
                 food = {
                     x: Math.floor(Math.random()*17+1) * box,
                     y: Math.floor(Math.random()*17+1) * box
@@ -355,14 +357,24 @@
                 y: snakeY
             }
             
-            if(snakeX < 0 || snakeY < 0 || snakeX > 19 * box || snakeY > 19 * box){
-                clearInterval(game);
+            if(snakeX < 0 || snakeY < 0 || snakeX > 19 * box || snakeY > 19 * box || collision(newHead, snake) ){
+                clearInterval(Game);
             }
             
             snake.unshift(newHead);
-        }
 
-        let game = setInterval(draw, 100);
+            ctx.fillStyle = "white";
+            ctx.font = "45px Changa one";
+            ctx.fillText(Score, 2*box, 1.6*box);
+        }
+        function collision(head, array){
+        for(var i = 0; i < array.length; i++){
+            if(head.x == array[i].x && head.y == array[i].y){
+                return true;
+            }
+        }
+        return false;
+}
 
         //Загрузка питань про кіно
         function loadQuiz(quizData) {
