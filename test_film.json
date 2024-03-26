@@ -1,0 +1,111 @@
+{
+    "testName": "Тест про кіно",
+    "questions": [
+      {
+        "question": "Хто є режисером фільму 'Пірати Карибського моря'?",
+        "answers": [
+          {
+            "answer": "Квентін Тарантіно",
+            "isCorrect": false
+          },
+          {
+            "answer": "Гай Річі",
+            "isCorrect": false
+          },
+          {
+            "answer": "Гор Вербінскі",
+            "isCorrect": true
+          },
+          {
+            "answer": "Крістофер Нолан",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "question": "Який актор зіграв головну роль у фільмі 'Титанік'?",
+        "answers": [
+          {
+            "answer": "Бред Пітт",
+            "isCorrect": false
+          },
+          {
+            "answer": "Леонардо ДіКапріо",
+            "isCorrect": true
+          },
+          {
+            "answer": "Том Хенкс",
+            "isCorrect": false
+          },
+          {
+            "answer": "Джонні Депп",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "question": "Який фільм отримав найбільше 'Оскарів'?",
+        "answers": [
+          {
+            "answer": "Титанік",
+            "isCorrect": true
+          },
+          {
+            "answer": "Аватар",
+            "isCorrect": false
+          },
+          {
+            "answer": "Інтерстеллар",
+            "isCorrect": false
+          },
+          {
+            "answer": "Хороший, поганий, злий",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "question": "Хто є режисером фільму 'Назад у майбутнє'?",
+        "answers": [
+          {
+            "answer": "Роберт Земекіс",
+            "isCorrect": true
+          },
+          {
+            "answer": "Стівен Спілберг",
+            "isCorrect": false
+          },
+          {
+            "answer": "Джеймс Кемерон",
+            "isCorrect": false
+          },
+          {
+            "answer": "Джордж Лукас",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "question": "Який актор зіграв головну роль у фільмі 'Темний лицар'?",
+        "answers": [
+          {
+            "answer": "Крістіан Бейл",
+            "isCorrect": true
+          },
+          {
+            "answer": "Г'ю Джекман",
+            "isCorrect": false
+          },
+          {
+            "answer": "Роберт Дауні молодший",
+            "isCorrect": false
+          },
+          {
+            "answer": "Кріс Хемсворт",
+            "isCorrect": false
+          }
+        ]
+      }
+    ]
+  }
+  
