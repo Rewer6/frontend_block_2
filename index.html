@@ -285,10 +285,45 @@
     
       <hr>
       <!-- Поле для гри змійка -->
-      <canvas id="gameCanvas" width="400" height="400" style="background-color:rgb(43, 233, 37)"></canvas>
-      <button id="startButton">Розпочати гру</button>
+      <div style="display: flex; justify-content: space-between;">
+        <div>
+            <canvas id="gameCanvas" width="400" height="400" style="background-color:rgb(43, 233, 37)"></canvas>
+            <button id="startButton">Розпочати гру</button>
+            <button id="button_game_result">Показати результати ігор</button>
+        </div>
+        <div>
+            <div id="results_game"></div>
+        </div>
+    </div>
+    <hr>
+    
 
       <script>
+        //Виведення результатів на сторінку:
+        const resultsButton = document.getElementById('button_game_result');
+        const resultsDiv = document.getElementById('results_game');
+
+        // Додаємо обробник подій до кнопки
+        resultsButton.addEventListener('click', function() {
+            // Отримуємо результати гри
+            const topGames = getTopGames();
+            const bottomGames = getBottomGames();
+
+            // Створюємо рядок для відображення результатів
+            let resultsString = '<h4>Топ 3 ігри</h4><ul>';
+            topGames.forEach(function(score) {
+                resultsString += '<li>' + score + '</li>';
+            });
+            resultsString += '</ul><h4>Три найгірших гри</h4><ul>';
+            bottomGames.forEach(function(score) {
+                resultsString += '<li>' + score + '</li>';
+            });
+            resultsString += '</ul>';
+
+            // Відображаємо результати в div для результатів
+            resultsDiv.innerHTML = resultsString;
+        });
+
         //Скрипт гри у змійку
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -393,7 +428,7 @@
             let games = JSON.parse(localStorage.getItem('games')) || [];
             return games.slice(-3);
         }
-        
+
         function printGames() {
             console.log("Топ 3 найкращі гри: ", getTopGames());
             console.log("Топ 3 найгірших гри: ", getBottomGames());
