@@ -286,12 +286,13 @@
       <hr>
       <!-- Поле для гри змійка -->
       <canvas id="gameCanvas" width="400" height="400" style="background-color:rgb(43, 233, 37)"></canvas>
-    
+      <button id="startButton">Розпочати гру</button>
 
       <script>
-         //Скрипт гри у змійку
+        //Скрипт гри у змійку
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
+        const startButton = document.getElementById('startButton');
 
         const box = 20;
         let snake = [];
@@ -300,16 +301,24 @@
             x: Math.floor(Math.random()*17+1) * box,
             y: Math.floor(Math.random()*17+1) * box
         }
+
+        let Game;
         let d;
 
+        startButton.addEventListener("click", function() {
+        Game = setInterval(draw, 100);
+        });
+
+        document.addEventListener("keydown", direction);
+
         function direction(event){
-            if(event.keyCode == 37 && d != "RIGHT"){
+            if(event.keyCode == 65 && d != "RIGHT"){
                 d = "LEFT";
-            }else if(event.keyCode == 38 && d != "DOWN"){
+            }else if(event.keyCode == 87 && d != "DOWN"){
                 d = "UP";
-            }else if(event.keyCode == 39 && d != "LEFT"){
+            }else if(event.keyCode == 68 && d != "LEFT"){
                 d = "RIGHT";
-            }else if(event.keyCode == 40 && d != "UP"){
+            }else if(event.keyCode == 83 && d != "UP"){
                 d = "DOWN";
             }
         }
@@ -352,7 +361,7 @@
             
             snake.unshift(newHead);
         }
-        
+
         let game = setInterval(draw, 100);
 
         //Загрузка питань про кіно
