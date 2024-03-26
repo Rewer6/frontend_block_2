@@ -259,14 +259,31 @@
       <button id="filter-by-genre">Фільтрувати за жанром бойовик</button>
       <button id="filter-by-rating">Фільтрувати за рейтингом 7+</button>
 
-      <div id="results"></div>
+      <div id="results_form"></div>
 
       <hr>
       <h2>Тестування ваших знань про кіно </h2>
 
       <div id="quiz"></div>
       <button onclick="checkAnswers()">Перевірити відповіді</button>
-      <div id="result" class="result"></div>
+      <div id="results_test" class="result"></div>
+
+      <hr>
+      <p>Логотип ФЕЛКТ</p>
+      <svg class="LNU" width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+        <line x1="0" y1="0" x2="200" y2="0" style="stroke:blue;stroke-width:10" />
+        <line x1="0" y1="0" x2="0" y2="100" style="stroke:blue;stroke-width:10" />
+        <line x1="200" y1="0" x2="200" y2="100" style="stroke:blue;stroke-width:10" />
+        <line x1="100" y1="0" x2="100" y2="200" style="stroke:blue;stroke-width:5" />
+        <path id="lineLeft" d="M 1 97 Q 45 180 100 200" stroke="blue" stroke-width="5" fill="none"/>
+        <path id="lineRight" d="M 100 200 Q 155 180 199 97" stroke="blue" stroke-width="5" fill="none"/>
+
+        <rect width="40" height="40" x="130" y="60" rx="10" ry="10" style="stroke:blue;stroke-width:3" fill="none" />
+        <text x="140" y="78" fill="blue">1 0</text>
+        <text x="140" y="93" fill="blue">0 1</text>
+      </svg>
+    
+    
 
       <script>
         //Загрузка питань про кіно
@@ -291,7 +308,7 @@
                     correctCount++;
                 }
             }
-            document.getElementById('result').innerText = 'Ви правильно відповіли на ' + correctCount + ' питань.';
+            document.getElementById('results_test').innerText = 'Ви правильно відповіли на ' + correctCount + ' питань.';
         }
         //завантажую дані із JSON файлу
         fetch('test_film.json')
@@ -302,7 +319,7 @@
 
         // Функція для виводу результатів на веб-сторінку
         function displayResults(results) {
-          var resultsDiv = document.getElementById('results');
+          var resultsDiv = document.getElementById('results_form');
           resultsDiv.innerHTML = ''; // Очищаємо попередні результати
           results.forEach(function(result, index) {
             var resultDiv = document.createElement('div');
