@@ -213,7 +213,7 @@
       </form>
       <hr> ФОРМА ІЗ ПОПЕРЕДНЬОГО БЛОКУ ЗАВДАНЬ-->
 
-      <!-- Початок блоку завдань 2 -->
+      <!-- Початок блоку 2 завдання-1 -->
       <h2 id="h-survey-form">Важливе опитування</h2>
       <hr>
       <form id="survey-form" >
@@ -260,14 +260,20 @@
       <button id="filter-by-rating">Фільтрувати за рейтингом 7+</button>
 
       <div id="results_form"></div>
+      <!-- Скрипт для завдань 1 -->
+      <script src="script_1_form.js"></script>
 
+      <!-- Завдання 2 -->
       <hr>
       <h2>Тестування ваших знань про кіно </h2>
 
       <div id="quiz"></div>
       <button onclick="checkAnswers()">Перевірити відповіді</button>
       <div id="results_test" class="result"></div>
+      <!-- Скрипт для завдань 2 -->
+      <script src="script_2_test.js"></script>
 
+      <!-- Завдання 3 -->
       <hr>
       <p>Логотип ФЕЛКТ</p>
       <svg class="LNU" width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
@@ -296,237 +302,9 @@
         </div>
     </div>
     <hr>
-    
+    <!-- Скрипт для завдань 3 -->
+    <script src="script_3_game.js"></script>
 
-      <script>
-        //Виведення результатів на сторінку:
-        const resultsButton = document.getElementById('button_game_result');
-        const resultsDiv = document.getElementById('results_game');
-
-        // Додаємо обробник подій до кнопки
-        resultsButton.addEventListener('click', function() {
-            // Отримуємо результати гри
-            const topGames = getTopGames();
-            const bottomGames = getBottomGames();
-
-            // Створюємо рядок для відображення результатів
-            let resultsString = '<h4>Топ 3 ігри</h4><ul>';
-            topGames.forEach(function(score) {
-                resultsString += '<li>' + score + '</li>';
-            });
-            resultsString += '</ul><h4>Три найгірших гри</h4><ul>';
-            bottomGames.forEach(function(score) {
-                resultsString += '<li>' + score + '</li>';
-            });
-            resultsString += '</ul>';
-
-            // Відображаємо результати в div для результатів
-            resultsDiv.innerHTML = resultsString;
-        });
-
-        //Скрипт гри у змійку
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const startButton = document.getElementById('startButton');
-
-        const box = 20;
-        let snake = [];
-        snake[0] = {x: 10 * box, y: 10 * box};
-        let food = {
-            x: Math.floor(Math.random()*17+1) * box,
-            y: Math.floor(Math.random()*17+1) * box
-        }
-
-        let Score = 0;
-        let Game;
-        let d;
-
-        startButton.addEventListener("click", function() {
-        Game = setInterval(draw, 150);
-        });
-
-        document.addEventListener("keydown", direction);
-
-        function direction(event){
-            if(event.keyCode == 65 && d != "RIGHT"){
-                d = "LEFT";
-            }else if(event.keyCode == 87 && d != "DOWN"){
-                d = "UP";
-            }else if(event.keyCode == 68 && d != "LEFT"){
-                d = "RIGHT";
-            }else if(event.keyCode == 83 && d != "UP"){
-                d = "DOWN";
-            }
-        }
-
-        function draw(){
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for(let i = 0; i < snake.length; i++){
-                ctx.fillStyle = (i == 0)? "green" : "white";
-                ctx.fillRect(snake[i].x, snake[i].y, box, box);
-            }
-            
-            ctx.fillStyle = "red";
-            ctx.fillRect(food.x, food.y, box, box);
-            
-            let snakeX = snake[0].x;
-            let snakeY = snake[0].y;
-            
-            if(d == "LEFT") snakeX -= box;
-            if(d == "UP") snakeY -= box;
-            if(d == "RIGHT") snakeX += box;
-            if(d == "DOWN") snakeY += box;
-            
-            if(snakeX == food.x && snakeY == food.y){
-                Score++
-                food = {
-                    x: Math.floor(Math.random()*17+1) * box,
-                    y: Math.floor(Math.random()*17+1) * box
-                }
-            }else{
-                snake.pop();
-            }
-            
-            let newHead = {
-                x: snakeX,
-                y: snakeY
-            }
-            
-            if(snakeX < 0 || snakeY < 0 || snakeX > 19 * box || snakeY > 19 * box || collision(newHead, snake) ){
-                clearInterval(Game);
-                saveGame(Score);
-                printGames();
-            }
-            
-            snake.unshift(newHead);
-
-            ctx.fillStyle = "white";
-            ctx.font = "45px Changa one";
-            ctx.fillText(Score, 2*box, 1.6*box);
-        }
-        function collision(head, array){
-        for(var i = 0; i < array.length; i++){
-            if(head.x == array[i].x && head.y == array[i].y){
-                return true;
-              }
-          }
-          return false;
-        }
-
-        // Зберігаємо результати гри
-        function saveGame(score) {
-            let games = JSON.parse(localStorage.getItem('games')) || [];
-            games.push(score);
-            games.sort((a, b) => b - a);
-            localStorage.setItem('games', JSON.stringify(games));
-        }
-        function getTopGames() {
-            let games = JSON.parse(localStorage.getItem('games')) || [];
-            return games.slice(0, 3);
-        }
-        function getBottomGames() {
-            let games = JSON.parse(localStorage.getItem('games')) || [];
-            return games.slice(-3);
-        }
-
-        function printGames() {
-            console.log("Топ 3 найкращі гри: ", getTopGames());
-            console.log("Топ 3 найгірших гри: ", getBottomGames());
-        }
-
-        //Загрузка питань про кіно
-        function loadQuiz(quizData) {
-            var quizDiv = document.getElementById('quiz');
-            quizData.questions.forEach(function(q, i) {
-                var questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = '<p>' + q.question + '</p>';
-                q.answers.forEach(function(a, j) {
-                    questionDiv.innerHTML += '<input type="radio" name="q' + i + '" value="' + a.isCorrect + '"> ' + a.answer + '<br>';
-                });
-                quizDiv.appendChild(questionDiv);
-            });
-        }
-        //перевірка відповідей
-        function checkAnswers() {
-            var correctCount = 0;
-            var inputs = document.getElementsByTagName('input');
-            for (var i = 0; i < inputs.length; i++) {
-                if (inputs[i].checked && inputs[i].value === 'true') {
-                    correctCount++;
-                }
-            }
-            document.getElementById('results_test').innerText = 'Ви правильно відповіли на ' + correctCount + ' питань.';
-        }
-        //завантажую дані із JSON файлу
-        fetch('test_film.json')
-            .then(response => response.json())
-            .then(data => loadQuiz(data))
-            .catch(error => console.error('Error:', error));
-
-
-        // Функція для виводу результатів на веб-сторінку
-        function displayResults(results) {
-          var resultsDiv = document.getElementById('results_form');
-          resultsDiv.innerHTML = ''; // Очищаємо попередні результати
-          results.forEach(function(result, index) {
-            var resultDiv = document.createElement('div');
-            resultDiv.textContent = 'Результат ' + (index + 1) + ': ' + JSON.stringify(result);
-            resultsDiv.appendChild(resultDiv);
-          });
-        }
-
-        // Фільтруємо дані за віком 18+
-        document.getElementById('filter-by-age').addEventListener('click', function() {
-          var allForms = JSON.parse(localStorage.getItem('FormData')) || [];
-          var filteredForms = allForms.filter(function(form) {
-            return form.age >= 18;
-          });
-          displayResults(filteredForms); 
-          console.log(filteredForms);
-        });
-
-        // Фільтруємо дані за жанром бойовик
-        document.getElementById('filter-by-genre').addEventListener('click', function() {
-          var allForms = JSON.parse(localStorage.getItem('FormData')) || [];
-          var filteredForms = allForms.filter(function(form) {
-            return form.genre === 'action';
-          });
-          displayResults(filteredForms); 
-          console.log(filteredForms);
-        });
-
-        // Фільтруємо дані за рейтингом 7+
-        document.getElementById('filter-by-rating').addEventListener('click', function() {
-          var allForms = JSON.parse(localStorage.getItem('FormData')) || [];
-          var filteredForms = allForms.filter(function(form) {
-            return form.rating >= 7;
-          });
-          displayResults(filteredForms); 
-          console.log(filteredForms);
-        });
-
-        document.getElementById('survey-form').addEventListener('submit', function(event) {
-          event.preventDefault();
-
-          var FormData = {
-              name: document.getElementById('name').value,
-              email: document.getElementById('email').value,
-              age: document.getElementById('age').value,
-              favoriteMovie: document.getElementById('favorite-movie').value,
-              rating: document.getElementById('rating').value,
-              genre: document.getElementById('genre').value,
-              comments: document.getElementById('comments').value,
-              seenMovie: document.getElementById('seen-movie').checked,
-              movieYear: document.getElementById('movie-year').value,
-              movieTime: document.getElementById('movie-time').value
-          };
-
-          var allForms = JSON.parse(localStorage.getItem('FormData')) || [];
-          allForms.push(FormData);
-          localStorage.setItem('FormData', JSON.stringify(allForms));
-        });   
-      </script>
 
      </article>
     
@@ -536,7 +314,7 @@
             <div class="icons">
               <h4>Стежте за новинами у телеграм каналі</h4>
               <ul id="icons">
-                <li><a href="#" class="normaltip"><img src="image/tg.jpg" alt=""></a></li>
+                <li><a href="#" class="normaltip"></a></li>
               </ul>
             </div>
             <div class="info">

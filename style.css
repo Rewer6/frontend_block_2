@@ -54,7 +54,6 @@ body {
 	width: 960px;
 }
 .bg1 {
-	background:url(image/bg_menu.png) 0 0 repeat-x;
 	display: flex;
   	flex-direction: column;
  	align-items: stretch;
