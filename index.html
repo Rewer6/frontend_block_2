@@ -359,6 +359,8 @@
             
             if(snakeX < 0 || snakeY < 0 || snakeX > 19 * box || snakeY > 19 * box || collision(newHead, snake) ){
                 clearInterval(Game);
+                saveGame(Score);
+                printGames();
             }
             
             snake.unshift(newHead);
@@ -371,10 +373,31 @@
         for(var i = 0; i < array.length; i++){
             if(head.x == array[i].x && head.y == array[i].y){
                 return true;
-            }
+              }
+          }
+          return false;
         }
-        return false;
-}
+
+        // Зберігаємо результати гри
+        function saveGame(score) {
+            let games = JSON.parse(localStorage.getItem('games')) || [];
+            games.push(score);
+            games.sort((a, b) => b - a);
+            localStorage.setItem('games', JSON.stringify(games));
+        }
+        function getTopGames() {
+            let games = JSON.parse(localStorage.getItem('games')) || [];
+            return games.slice(0, 3);
+        }
+        function getBottomGames() {
+            let games = JSON.parse(localStorage.getItem('games')) || [];
+            return games.slice(-3);
+        }
+        
+        function printGames() {
+            console.log("Топ 3 найкращі гри: ", getTopGames());
+            console.log("Топ 3 найгірших гри: ", getBottomGames());
+        }
 
         //Загрузка питань про кіно
         function loadQuiz(quizData) {
